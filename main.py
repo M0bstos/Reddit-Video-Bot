@@ -50,7 +50,6 @@ audio = concatenate_audioclips(clips)
 bg_video = VideoFileClip(input_video_path)
 
 duration = audio.duration
-bg_video = bg_video.subclip(0, duration)
 
 bg_audio = bg_video.audio
 
@@ -59,7 +58,10 @@ if bg_audio:
 else:
     final_audio = audio
 
-final_video = bg_video.set_audio(final_audio)
+max_starting_point = bg_video.duration - duration
+starting_point = random.uniform(0, max_starting_point)
+
+final_video = bg_video.subclip(starting_point, starting_point + duration).set_audio(final_audio)
 
 final_video = final_video.resize(height=1080)
 final_video = final_video.crop(x1=420, y1=0, x2=1500, y2=1080)
