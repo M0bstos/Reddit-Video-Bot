@@ -22,7 +22,7 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 
 subreddit = "TwoSentenceHorror"
-num = 2
+num = 1
 
 subreddit = reddit.subreddit(subreddit)
 
@@ -74,8 +74,9 @@ for post in subreddit.top(limit=num):
 
     final_video = bg_video.subclip(starting_point, starting_point + duration).set_audio(final_audio)
 
+    final_video = final_video.resize(height=1920)
+    final_video = final_video.crop(x1=1120, y1=0, x2=2400, y2=1920)
     final_video = final_video.resize(height=1080)
-    final_video = final_video.crop(x1=420, y1=0, x2=1500, y2=1080)
 
     final_video.write_videofile(output_video_path, fps=bg_video.fps)
 
