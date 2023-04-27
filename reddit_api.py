@@ -9,6 +9,8 @@ reddit = praw.Reddit(
     user_agent=user_agent
 )
 
-def get_top_post(subreddit, time_filter='day'):
+
+def get_top_posts(reddit, subreddit, num_posts=2, time_filter='day'):
     subreddit = reddit.subreddit(subreddit)
-    return subreddit.top(time_filter=time_filter, limit=1).__next__()
+    top_posts = subreddit.top(time_filter=time_filter, limit=num_posts)
+    return list(top_posts)
