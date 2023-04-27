@@ -26,7 +26,7 @@ num = 1
 
 subreddit = reddit.subreddit(subreddit)
 
-for post in subreddit.top(limit=num):
+for post in subreddit.top(time_filter='day',limit=num):
 
     output_audio_path = r"C:\Users\Harsh Nanda\OneDrive\Desktop\STUFF\Reddit-Video-Bot\Output Audios\OutputAudio{}.mp3".format(counter)
     output_video_path = r"C:\Users\Harsh Nanda\OneDrive\Desktop\STUFF\Reddit-Video-Bot\Output Videos\OutputVideo{}.mp4".format(counter)
@@ -75,7 +75,7 @@ for post in subreddit.top(limit=num):
     final_video = bg_video.subclip(starting_point, starting_point + duration).set_audio(final_audio)
 
     final_video = final_video.resize(height=1920)
-    final_video = final_video.crop(x1=1120, y1=0, x2=2400, y2=1920)
+    final_video = final_video.crop(x1=1070, y1=0, x2=2350, y2=1920)
     final_video = final_video.resize(height=1080)
 
     final_video.write_videofile(output_video_path, fps=bg_video.fps)
